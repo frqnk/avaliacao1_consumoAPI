@@ -43,6 +43,8 @@ A API utilizada neste projeto foi a [isEven API](https://isevenapi.xyz/), cuja f
 - Removedor de anúncio
 - Suporte a números inteiros com casas decimais
 - Uso de vírgula ou ponto como separador decimal
+- Omissão da parte inteira em números com casas decimais
+- Pelo menos um 10 em Desenvolvimento Web III
 
 ## Este programa não oferece:
 
