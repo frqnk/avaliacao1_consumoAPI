@@ -49,8 +49,9 @@ A API utilizada neste projeto foi a [isEven API](https://isevenapi.xyz/), cuja f
 ## Este programa não oferece:
 
 - Separadores de grupos de milhar, tais como espaço, vírgula ou ponto. Ex.:
-    - 69 000
-    - 80,085
-    - 53.105
+    - 69 420.0
+    - 77 666,0
+    - 80,085.0
+    - 53.105,0
 - Operações em lote
 - Dinheiro
