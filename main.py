@@ -94,9 +94,9 @@ def main():
         return
         
     if API.hasAd:
-        user_number.parity = ('ímpar', 'par')[remove_ad(response.json())['iseven']]
+        user_number.parity = 'par' if remove_ad(response.json())['iseven'] else 'ímpar'
     else:
-        user_number.parity = ('ímpar', 'par')[response.json()['iseven']]
+        user_number.parity = 'par' if response.json()['iseven'] else 'ímpar'
 
     print(f'{user_number.input} é um número {user_number.parity}.')
 
