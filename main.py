@@ -36,21 +36,17 @@ class IsEven_API:
 
 class User_number:
     parity = None
+    as_float = None
+    as_int = None
 
     def __init__(self, input):
         self.input = input
-
         try:
             self.as_float = float(self.input.replace(',', '.'))
-
-            if math.ceil(self.as_float) - math.floor(self.as_float) == 0:
-                self.as_int = int(self.as_float)
-            else:
-                self.as_int = None
-
         except:
-            self.as_float = None
-            self.as_int = None
+            return
+        if math.ceil(self.as_float) - math.floor(self.as_float) == 0:
+            self.as_int = int(self.as_float)
 
     def is_not_a_number(self):
         if self.as_float is None:
