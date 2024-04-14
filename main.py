@@ -31,8 +31,10 @@ class IsEven_API:
         self.hasAd = self.tier['advertisements']
         self.allowNegativeNumbers = self.tier['negative_numbers']
 
-    def request(self, number):
-        return requests.get(self.URL+str(number))
+    def isEven(self, number):
+        response = requests.get(self.URL+str(number))
+        response.raise_for_status()
+        return response.json()['iseven']
 
 class User_number:
     parity = None
@@ -70,8 +72,7 @@ def main():
     user_number = User_number(input('\nDê um número: '))
 
     try:
-        response = API.request(user_number.as_int)
-        response.raise_for_status()
+        user_number.parity = 'par' if API.isEven(user_number.as_int) else 'ímpar'
     except:
         if user_number.is_not_a_number():
             print(f'"{user_number.input}" não é um número válido.')
@@ -88,8 +89,6 @@ def main():
         else:
             print('Algo dentre muitas coisas que podiam dar errado deu errado. Tente novamente. Se continuar dando errado, encontre o problema e o corrija antes de tentar novamente. Boa sorte.')
         return
-        
-    user_number.parity = 'par' if response.json()['iseven'] else 'ímpar'
 
     print(f'{user_number.input} é um número {user_number.parity}.')
 
