@@ -72,16 +72,16 @@ def main():
     user_number = User_number(input('\nDê um número: '))
 
     try:
-        user_number.parity = 'par' if API.isEven(user_number.as_int) else 'ímpar'
+        user_number.parity = 'par' if parityChecker.isEven(user_number.as_int) else 'ímpar'
     except:
         if user_number.is_not_a_number():
             print(f'"{user_number.input}" não é um número válido.')
         elif user_number.is_not_a_whole_number():
             print('Números não inteiros não possuem paridade.')
-        elif user_number.is_a_negative_number() and not API.allowNegativeNumbers: 
+        elif user_number.is_a_negative_number() and not parityChecker.allowNegativeNumbers:
             print('Números negativos não são suportados pelo plano atual. Considere migrar de plano para melhor atender às suas necessidades.')
-        elif user_number.as_int not in API.supportedRange:
-            print(f'{user_number.input} não está no intervalo de {API.minValue} a {API.maxValue} do plano atual. Considere migrar de plano para melhor atender às suas necessidades.')
+        elif user_number.as_int not in parityChecker.supportedRange:
+            print(f'{user_number.input} não está no intervalo de {parityChecker.minValue} a {parityChecker.maxValue} do plano atual. Considere migrar de plano para melhor atender às suas necessidades.')
         elif response.status_code in range(400, 500):
             print('Algo deu errado e a culpa é minha. Lamento.')
         elif response.status_code in range(500, 600):
@@ -110,8 +110,8 @@ def main_loop():
 def tests():
     pass
 
-API = IsEven_API()
+parityChecker = IsEven_API()
 
-print(f'\nBem-vindo ao verificador de paridade de números entre {API.minValue} e {API.maxValue}.')
+print(f'\nBem-vindo ao verificador de paridade de números entre {parityChecker.minValue} e {parityChecker.maxValue}.')
 
 main_loop()
