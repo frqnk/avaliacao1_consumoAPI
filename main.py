@@ -66,10 +66,6 @@ class User_number:
         else:
             return False
 
-def remove_ad(content):
-    content['ad'] = None
-    return content
-
 def main():
     user_number = User_number(input('\nDê um número: '))
 
@@ -93,10 +89,7 @@ def main():
             print('Algo dentre muitas coisas que podiam dar errado deu errado. Tente novamente. Se continuar dando errado, encontre o problema e o corrija antes de tentar novamente. Boa sorte.')
         return
         
-    if API.hasAd:
-        user_number.parity = 'par' if remove_ad(response.json())['iseven'] else 'ímpar'
-    else:
-        user_number.parity = 'par' if response.json()['iseven'] else 'ímpar'
+    user_number.parity = 'par' if response.json()['iseven'] else 'ímpar'
 
     print(f'{user_number.input} é um número {user_number.parity}.')
 

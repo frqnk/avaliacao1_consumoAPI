@@ -40,7 +40,6 @@ A API utilizada neste projeto foi a [isEven API](https://isevenapi.xyz/), cuja f
 
 - Interface de linha de comando
 - Mensagens informativas
-- Removedor de anúncio
 - Suporte a números inteiros com casas decimais
 - Uso de vírgula ou ponto como separador decimal
 - Omissão da parte inteira em números com casas decimais
