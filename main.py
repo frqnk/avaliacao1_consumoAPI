@@ -25,24 +25,14 @@ class IsEven_API:
 
     def __init__(self, tier = 'public'):
         self.tier = self.tiers[tier]
+        self.supportedRange = self.tier['range']
+        self.minValue = self.tier['range'][0]
+        self.maxValue = self.tier['range'][-1]
+        self.hasAd = self.tier['advertisements']
+        self.allowNegativeNumbers = self.tier['negative_numbers']
 
     def request(self, number):
         return requests.get(self.URL+str(number))
-
-    def supportedRange(self):
-        return self.tier['range']
-
-    def minValue(self):
-        return self.tier['range'][0]
-
-    def maxValue(self):
-        return self.tier['range'][-1]
-
-    def hasAd(self):
-        return self.tier['advertisements']
-
-    def allowNegativeNumbers(self):
-        return self.tier['negative_numbers']
 
 class User_number:
     parity = None
@@ -92,7 +82,7 @@ def main():
 
         response.raise_for_status()
 
-        if API.hasAd():
+        if API.hasAd:
             user_number.parity = ('ímpar', 'par')[remove_ad(response.json())['iseven']]
         else:
             user_number.parity = ('ímpar', 'par')[response.json()['iseven']]
@@ -106,11 +96,11 @@ def main():
         elif user_number.is_not_a_whole_number():
             print('Números não inteiros não possuem paridade.')
 
-        elif user_number.is_a_negative_number() and API.allowNegativeNumbers() == False: 
+        elif user_number.is_a_negative_number() and not API.allowNegativeNumbers: 
             print('Números negativos não são suportados pelo plano atual. Considere migrar de plano para melhor atender às suas necessidades.')
 
-        elif user_number.as_int not in API.supportedRange():
-            print(f'{user_number.input} não está no intervalo de {API.minValue()} a {API.maxValue()} do plano atual. Considere migrar de plano para melhor atender às suas necessidades.')
+        elif user_number.as_int not in API.supportedRange:
+            print(f'{user_number.input} não está no intervalo de {API.minValue} a {API.maxValue} do plano atual. Considere migrar de plano para melhor atender às suas necessidades.')
 
         elif response.status_code in range(400, 500):
             print('Algo deu errado e a culpa é minha. Lamento.')
@@ -141,6 +131,6 @@ def tests():
 
 API = IsEven_API()
 
-print(f'\nBem-vindo ao verificador de paridade de números entre {API.minValue()} e {API.maxValue()}.')
+print(f'\nBem-vindo ao verificador de paridade de números entre {API.minValue} e {API.maxValue}.')
 
 main_loop()
