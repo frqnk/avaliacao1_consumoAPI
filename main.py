@@ -107,9 +107,6 @@ def main_loop():
     askToContinue()
     main_loop()
 
-def tests():
-    pass
-
 parityChecker = IsEven_API()
 
 print(f'\nBem-vindo ao verificador de paridade de números entre {parityChecker.minValue} e {parityChecker.maxValue}.')
